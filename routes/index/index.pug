@@ -1,4 +1,10 @@
 extend ../../views/layout.pug
 
 block content
-  h1 My Article
+    div(class="row")
+      div(class="col-xs-12", id="displayarea")
+
+block scripts
+  script(type="text/javascript", src="/socket.io/socket.io.js")
+  script(type="text/javascript", src="/app.js")
+    
