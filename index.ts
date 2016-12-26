@@ -1,9 +1,14 @@
 import * as express from 'express';
-import * as indexRoute from './routes/index'
+import * as allRoutes from './routes'
+import * as sockServer from './realtime'
+import * as http from 'http'
 
 var app = express();
-app.set('view engine', 'pug')
-var route = new indexRoute.Index()
-app.get("/", route.index)
+var serv = http.createServer(app);
+sockServer.init(serv)
 
-app.listen(3000)
+app.set('view engine', 'pug')
+allRoutes.init(app)
+
+app.use(express.static("wwwroot"))
+serv.listen(3000)

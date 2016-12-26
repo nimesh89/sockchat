@@ -3,8 +3,13 @@
 import * as express from "express";
 import * as pug from "pug"
 
-export class Index {
+class Index {
     public index(req: express.Request, res: express.Response) {
-        res.send(pug.renderFile("routes/index/index.pug", {title: 'Hey', message: 'Hello there!' }))
+        res.send(pug.renderFile("routes/index/index.pug", { title: 'Hey', message: 'Hello there!' }))
     }
+}
+
+export function register(app: express.Express) {
+    var route = new Index();
+    app.get("/", route.index)
 }
